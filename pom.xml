@@ -24,13 +24,13 @@
     <properties>
         <!-- Project Version -->
         <revision>3.0</revision>
-        <changelist>-SNAPSHOT</changelist>
+        <changelist></changelist>
         <sha1/>
         <!-- Settings -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <docker.image.groupId>${project.groupId}</docker.image.groupId>
-        <docker.image.artifactId>javister-docker-base</docker.image.artifactId>
-        <docker.image>ghcr.io/${docker.image.artifactId}</docker.image>
+        <docker.image.artifactId>docker-base</docker.image.artifactId>
+        <docker.image>ghcr.io/vektor-docker/${docker.image.artifactId}</docker.image>
         <!-- Dependency versions -->
         <ubuntu.version>22.04</ubuntu.version>
         <!-- Plugins Versions -->
