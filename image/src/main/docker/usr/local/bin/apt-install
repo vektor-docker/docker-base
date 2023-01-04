@@ -1,4 +1,3 @@
 #!/bin/bash -e
 
-source yum-proxy
 apt -o Dpkg::Options::="--force-confdef" install -y ${BASE_APTLIST} ${APTLIST}
