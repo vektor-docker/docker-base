@@ -1,4 +1,4 @@
-#!/usr/bin/python -u
+#!/usr/bin/python3 -u
 import argparse
 import errno
 import json
@@ -275,7 +275,7 @@ def run_startup_files():
 
 def start_runit():
     debug("Booting runit daemon...")
-    pid = os.spawnl(os.P_NOWAIT, "/usr/sbin/runsvdir", "/usr/sbin/runsvdir", "-P", "/etc/service")
+    pid = os.spawnl(os.P_NOWAIT, "/usr/bin/runsvdir", "/usr/bin/runsvdir", "-P", "/etc/service")
     debug("Runit started as PID %d" % pid)
     return pid
 
@@ -291,14 +291,14 @@ def wait_for_runit_or_interrupt(pid):
 def shutdown_runit_services(quiet=False):
     if not quiet:
         debug("Begin shutting down runit services...")
-    os.system("/usr/sbin/sv down /etc/service/*")
+    os.system("/usr/bin/sv down /etc/service/*")
 
 
 def wait_for_runit_services():
     debug("Waiting for runit services to exit...")
     done = False
     while not done:
-        done = os.system("/usr/sbin/sv status /etc/service/* | grep -q '^run:'") != 0
+        done = os.system("/usr/bin/sv status /etc/service/* | grep -q '^run:'") != 0
         if not done:
             time.sleep(0.1)
             # According to https://github.com/phusion/baseimage-docker/issues/315

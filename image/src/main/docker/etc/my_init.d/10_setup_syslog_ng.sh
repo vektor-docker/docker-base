@@ -12,22 +12,22 @@ case ${LOG_LEVEL} in
     INFO)
         export SYSLOGNG_FILTER=" and not filter(f_debug) and not program(CROND)"
         export SYSLOGNG_CRON_FILTER=" and not filter(f_debug) and not filter(f_notice) and not program(CROND)"
-        sed --in-place "s/cron.hourly/cron.hourly > \\/dev\\/null/g" /etc/cron.d/0hourly
+#        sed --in-place "s/cron.hourly/cron.hourly > \\/dev\\/null/g" /etc/cron.d/0hourly
         ;;
     WARNING)
         export SYSLOGNG_FILTER=" and not filter(f_debug) and not filter(f_info) and not filter(f_notice) and not program(CROND)"
         export SYSLOGNG_CRON_FILTER=" and not filter(f_debug) and not filter(f_info) and not filter(f_notice) and not program(CROND)"
-        sed --in-place "s/cron.hourly/cron.hourly > \\/dev\\/null/g" /etc/cron.d/0hourly
+#        sed --in-place "s/cron.hourly/cron.hourly > \\/dev\\/null/g" /etc/cron.d/0hourly
         ;;
     ERROR)
         export SYSLOGNG_FILTER=" and not filter(f_debug) and not filter(f_info) and not filter(f_notice) and not filter(f_warn) and not filter(f_messages) and not program(CROND)"
         export SYSLOGNG_CRON_FILTER=" and not filter(f_debug) and not filter(f_info) and not filter(f_notice) and not filter(f_warn) and not filter(f_messages) and not program(CROND)"
-        sed --in-place "s/cron.hourly/cron.hourly > \\/dev\\/null/g" /etc/cron.d/0hourly
+#        sed --in-place "s/cron.hourly/cron.hourly > \\/dev\\/null/g" /etc/cron.d/0hourly
         ;;
     CRITICAL)
         export SYSLOGNG_FILTER=" and not filter(f_debug) and not filter(f_info) and not filter(f_notice) and not filter(f_warn) and not filter(f_messages) and not filter(f_err) and not program(CROND)"
         export SYSLOGNG_CRON_FILTER=" and not filter(f_debug) and not filter(f_info) and not filter(f_notice) and not filter(f_warn) and not filter(f_messages) and not filter(f_err) and not program(CROND)"
-        sed --in-place "s/cron.hourly/cron.hourly > \\/dev\\/null/g" /etc/cron.d/0hourly
+#        sed --in-place "s/cron.hourly/cron.hourly > \\/dev\\/null/g" /etc/cron.d/0hourly
         ;;
 esac
 
