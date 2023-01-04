@@ -4,7 +4,7 @@ FROM ubuntu:${UBUNTU_VERSION} as BASE
 COPY src/main/docker /
 
 ENV PUID=911 \
-    BASE_APTLIST="syslog-ng inotify-tools zip unzip wget less psmisc iproute2 runit" \
+    BASE_APTLIST="syslog-ng inotify-tools zip unzip wget less psmisc iproute2 runit locales" \
     LOG_LEVEL="INFO" \
     DEBIAN_FRONTEND="noninteractive"
 
@@ -34,6 +34,9 @@ RUN echo '*** Set permissions for the support tools' && \
     touch /var/log/syslog && \
     mknod -m 640 /dev/xconsole p && \
     chmod u=rw,g=r,o= /var/log/syslog && \
+    echo '*** Configure locale.' && \
+    sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
+    locale-gen && \
     echo '*** Configure cron daemon.' && \
     chmod 600 /etc/crontab && \
     sed -i 's/^\s*session\s\+required\s\+pam_loginuid.so/# &/' /etc/pam.d/cron && \
@@ -64,7 +67,7 @@ ENV PUID=911 \
     KILL_ALL_PROCESSES_TIMEOUT=5 \
     APTLIST="" \
     BUILD_RPMLIST="" \
-    BASE_APTLIST="syslog-ng inotify-tools zip unzip wget less psmisc iproute2 runit" \
+    BASE_APTLIST="syslog-ng inotify-tools zip unzip wget less psmisc iproute2 runit locales" \
     LOG_LEVEL="INFO"
 
 CMD ["/usr/local/bin/my_init"]

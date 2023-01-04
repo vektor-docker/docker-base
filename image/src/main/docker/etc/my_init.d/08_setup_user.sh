@@ -11,7 +11,7 @@ if [[ "${LOG_LEVEL}" == "DEBUG" ]]; then verbose="--changes"; fi
 [[ "$(id -u system > /dev/null 2>&1; echo $?)" == "0" ]] && CURR_USER="system" || CURR_USER="${PUSER}"
 mdebug "Current user: ${CURR_USER}"
 
-chown ${verbose} ${CURR_USER} /var/spool/mail/${CURR_USER}
+#chown ${verbose} ${CURR_USER} /var/mail/${CURR_USER}
 
 if [[ ! "$(id -u ${CURR_USER})" -eq "${PUID}" ]]; then usermod -o -u "${PUID}" ${CURR_USER} ; fi
 if [[ ! "$(id -g ${CURR_USER})" -eq "${PGID}" ]]; then groupmod -o -g "${PGID}" ${CURR_USER} ; fi
